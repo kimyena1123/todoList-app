@@ -28,8 +28,13 @@ function App() {
     todoItems.map((item) => {
       
       return(//반복
-        <div className="Todo" key = {item.id}>
+        <div key = {item.id}>
           <Todo item = {item}/>
+          {/* 
+            id = {item.id}
+            title = {item.title}
+            done = {item.done}
+           */}
         </div>
       )
 

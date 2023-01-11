@@ -3,14 +3,15 @@
 //3. App(부모 컴포넌트)에서 Todo(자식 컴포넌트) 1개를 렌더링
 //import { useState } from "react";
 
-const Todo = (props) => { //<Todo todoitem = {todo}/> =>  props = todo
+const Todo = ({item}) => { //<Todo todoitem = {todo}/> =>  props = todo
     
-    const {item} = props;
+    //const {item} = props;
+    const {id, title, done} = item;
 
     return(
         <div className="Todo">
-            <input type = "checkbox" id = {item.id} name = {item.id} value = {item.id} defaultChecked = {true} />
-            <label htmlFor={item.id}>{item.title}</label>
+            <input type = "checkbox" id = {`todo${id}`} name = {`todo${id}`} value = {`todo${id}`} defaultChecked = {done} />
+            <label htmlFor={`todo${id}`}>{title}</label>
         </div>
     )
 };
