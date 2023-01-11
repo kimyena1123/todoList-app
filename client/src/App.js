@@ -25,11 +25,11 @@ function App() {
 
 
   return (
-    todoItems.map((todo) => {
+    todoItems.map((item) => {
       
       return(//반복
-        <div className="Todo" key = {todo.id}>
-          <Todo todoItem = {todo}/>
+        <div className="Todo" key = {item.id}>
+          <Todo item = {item}/>
         </div>
       )
 
