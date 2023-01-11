@@ -1,10 +1,39 @@
 import './App.css';
+import { useState } from "react";
+import Todo from './components/Todo';
 
 function App() {
+  //가상 데이터 -> back에서 가져와야 함.
+  const [todoItems, setTodoItems] = useState([
+    {
+      id: 1,
+      title: 'My Todo1',
+      done: false,
+    },
+    {
+      id: 2,
+      title: 'My Todo2',
+      done: false,
+    },
+    {
+      id: 3,
+      title: 'My Todo3',
+      done: true,
+    },
+    // + newItem
+  ]);
+
+
   return (
-    <div className="App">
-      My todo app
-    </div>
+    todoItems.map((todo) => {
+      
+      return(//반복
+        <div className="Todo" key = {todo.id}>
+          <Todo todoItem = {todo}/>
+        </div>
+      )
+
+    })
   );
 }
 
