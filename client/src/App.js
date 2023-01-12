@@ -1,6 +1,7 @@
 import './App.css';
 import { useState } from "react";
 import Todo from './components/Todo';
+import AddTodo from './components/AddTodo'
 
 function App() {
   //가상 데이터 -> back에서 가져와야 함.
@@ -25,20 +26,18 @@ function App() {
 
 
   return (
-    todoItems.map((item) => {
-      
-      return(//반복
-        <div key = {item.id}>
-          <Todo item = {item}/>
-          {/* 
-            id = {item.id}
-            title = {item.title}
-            done = {item.done}
-           */}
-        </div>
-      )
+    <div className="App">
+      <AddTodo />
 
-    })
+      {todoItems.map((item) => {
+        console.log('item >> ', item);
+
+        return(
+          <Todo key = {item.id} item = {item} />
+        )
+      })
+      }
+    </div>
   );
 }
 
