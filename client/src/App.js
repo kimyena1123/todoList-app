@@ -3,6 +3,7 @@ import {BrowserRouter, Routes, Route} from "react-router-dom";
 import Todo from './components/Todo';
 import AddTodo from './components/AddTodo'
 import Header from './components/Header';
+import './styles/App.scss';
 
 function App() {
   //가상 데이터 -> back에서 가져와야 함.
@@ -66,9 +67,12 @@ function App() {
 
   return (
     <div className="App">
+      {/*
       <BrowserRouter>
         <Header />
       </BrowserRouter>
+      */}
+      <header>🖐Yena Todo App</header>
 
       <AddTodo addItem={addItem}/>
 

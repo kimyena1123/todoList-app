@@ -1,3 +1,4 @@
+import '../styles/AddTodo.scss';
 import {useState} from "react";
 //1. 함수형 컴포넌트
 //2. input과 button을 가짐
