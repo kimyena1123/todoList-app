@@ -1,7 +1,8 @@
-import './App.css';
 import { useState, useRef } from "react";
+import {BrowserRouter, Routes, Route} from "react-router-dom";
 import Todo from './components/Todo';
 import AddTodo from './components/AddTodo'
+import Header from './components/Header';
 
 function App() {
   //가상 데이터 -> back에서 가져와야 함.
@@ -65,18 +66,27 @@ function App() {
 
   return (
     <div className="App">
+      <BrowserRouter>
+        <Header />
+      </BrowserRouter>
+
       <AddTodo addItem={addItem}/>
 
-      {todoItems.map((item) => {
-        console.log('item >> ', item);
+      <div className="left-todos">🚀{todoItems.length} todos</div>
 
-        return(
-          <Todo key = {item.id} 
-                item = {item}
-                deleteItem = {deleteItem} />
-        )
-      })
+      {todoItems.length > 0 ? 
+        (todoItems.map((item) => {
+          console.log('item >> ', item);
+
+          return(
+            <Todo key = {item.id} 
+              item = {item}
+              deleteItem = {deleteItem} />
+          )
+        })
+        )  :  (<p className="empty-todos">Todo를 추가해주세요🔥</p>)
       }
+
     </div>
   );
 }
