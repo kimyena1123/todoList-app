@@ -84,15 +84,23 @@ function App() {
   
   //전체 Todo 리스트(todoItems)는 App 컴포넌트에서 관리하고 있으므로
   //deleteItem()함수는 App 컴포넌트에 작성되어야 함.
-  const deleteItem = (targetItem) => {
+  const deleteItem = async (targetItem) => {
     console.log('click del btn');
     console.log('받은 id를 보자 >> ', targetItem.id);
+
+    //axios.delete(url)
+    //DELETE localhost:PORT/todo/:todoId - remove a specific todo (DELETE)
+    const res = await axios.delete(`http://localhost:8080/todo/${targetItem.id}`);
+    console.log('res', res);
+    console.log('res.data', res.data);
 
     //사용자가 삭제하길 원하는 Item(targetItem)의 id와
     //현재 가지고 있는 todoItems의 item들(haveItem)의 id가
     //같다면 삭제하고 같지 않은 것들은 updateTodoItems에 넣어
     //setTodoItems를 통해 todoItems에 저장
-    const updateTodoItems = todoItems.filter((haveItem) => haveItem.id !== targetItem.id);
+    const updateTodoItems = todoItems.filter((haveItem) => haveItem.id != targetItem.id);
+    console.log('delete updateTodoItems 확인 >> ', updateTodoItems);
+
     setTodoItems(updateTodoItems);
   }
 
