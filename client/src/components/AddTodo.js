@@ -1,5 +1,8 @@
 import '../styles/AddTodo.scss';
 import {useState} from "react";
+
+import { faPlus } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 //1. 함수형 컴포넌트
 //2. input과 button을 가짐
 //3. app.js 어디가에서 addTodo 컴포넌트 추가
@@ -43,7 +46,10 @@ const AddTodo = ({addItem}) => {
             />
 
             {/* button을 누르면 밑에 Todo 리스트가 추가됨 */}
-            <button onClick={onButtonClick}>ADD</button>
+            {/* <button onClick={onButtonClick}>ADD</button> */}
+            <button onClick={onButtonClick}>
+                <FontAwesomeIcon icon={faPlus} />
+            </button>
         </div>
     )
 }

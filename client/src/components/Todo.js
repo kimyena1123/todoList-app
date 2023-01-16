@@ -4,6 +4,9 @@
 import '../styles/Todo.scss';
 import { useState } from "react";
 
+import { faTrashCan } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
 const Todo = ({item, deleteItem}) => { //<Todo todoitem = {todo}/> =>  props = todo
     
     //const {item} = props;
@@ -75,7 +78,10 @@ const Todo = ({item, deleteItem}) => { //<Todo todoitem = {todo}/> =>  props = t
                     onKeyPress = {enterKeyEventHandler}
             />
 
-            <button onClick={onDeleteBtn}>DELETE</button>
+            {/* <button onClick={onDeleteBtn}>DELETE</button> */}
+            <button onClick={onDeleteBtn} className = "deleteBtn">
+                <FontAwesomeIcon icon={faTrashCan} />
+            </button>
         </div>
     )
 };
