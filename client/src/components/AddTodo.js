@@ -1,5 +1,5 @@
 import '../styles/AddTodo.scss';
-import {useState} from "react";
+import {useState, useRef, useEffect} from "react";
 
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -13,8 +13,17 @@ const AddTodo = ({addItem}) => {
     //사용자가 입력한 값(title) 저장할 객체
     // (id, title, done에 대한 정보를 저장해야 하기에 객체 형태로!)
     const [todoItem, setTodoItem] = useState({
-        title: '초기값'
+        title: ''
     });
+
+    //ref 선언
+    const inputFocus = useRef();
+
+    //useEffect => Mount(최초 rendering)될 때만.
+    useEffect(() => {
+        inputFocus.current.focus();
+    }, []);
+
 
     //험수
     const handleKeyPress = (e) =>{
@@ -24,6 +33,13 @@ const AddTodo = ({addItem}) => {
     }
 
     const onButtonClick = () =>{
+        //만약 양끝 공백을 제거한 input text 길이가 0이라면 -> 조건문
+        //add하는 함수를 미리 끝내버리기 -> return
+        if(todoItem.title.trim().length == 0){ // 공백이라면 끝내버리기
+            return;
+        }
+
+
         //props로 받아온 addItem 함수 실행함.
         addItem(todoItem);
 
@@ -43,6 +59,7 @@ const AddTodo = ({addItem}) => {
                     value={todoItem.title}
                     onChange={(e) => {setTodoItem({title: e.target.value})}}
                     onKeyPress={handleKeyPress}
+                    ref={inputFocus}
             />
 
             {/* button을 누르면 밑에 Todo 리스트가 추가됨 */}
