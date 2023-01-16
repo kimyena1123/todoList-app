@@ -104,6 +104,19 @@ function App() {
     setTodoItems(updateTodoItems);
   }
 
+  
+  //API를 이용해서 update를 하려면 
+  //(1) server/routes/todo.js API를 이용해 서버 데이터를 업데이트 한 후
+  //(2) 변경된 내용을 화면에 다시 출력하는 작업
+  const updateItem = async (targetItem) => {
+    console.log('target >> ', targetItem);
+
+    //axios.patch(url, data);
+    ////PATCH localhost: PORT/todo/:todoId - edit a specific todo(UPDATE)
+    const res = await axios.patch(`http://localhost:8080/todo/${targetItem.id}`, targetItem);
+    
+  }
+
   return (
     <div className="App">
       {/*
@@ -124,7 +137,9 @@ function App() {
           return(
             <Todo key = {item.id} 
               item = {item}
-              deleteItem = {deleteItem} />
+              deleteItem = {deleteItem} 
+              updateItem = {updateItem}
+            />
           )
         })
         )  :  (<p className="empty-todos">Todo를 추가해주세요🔥</p>)

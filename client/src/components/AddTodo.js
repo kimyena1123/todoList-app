@@ -41,7 +41,7 @@ const AddTodo = ({addItem}) => {
 
 
         //props로 받아온 addItem 함수 실행함.
-        addItem(todoItem);
+        addItem(todoItem); // {title : 'input 입력값'}
 
         //App컴포넌트에서 매개변수로 받는 newItem은 AddTodo 컴포넌트에서 todoItem임.
         //todoItem을 매개변수로 받아 App컴포넌트에서 newItem으로 쓰고 있는 것.
@@ -49,7 +49,7 @@ const AddTodo = ({addItem}) => {
         //그 후 기존 배열인 todoItems에 newItem이 추가된다.
 
         //input창 초기화
-        setTodoItem({title: ''});
+        setTodoItem({title: ''}); //input 초기화
     }
 
     return(

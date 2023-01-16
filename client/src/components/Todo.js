@@ -7,7 +7,7 @@ import { useState } from "react";
 import { faTrashCan } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-const Todo = ({item, deleteItem}) => { //<Todo todoitem = {todo}/> =>  props = todo
+const Todo = ({item, deleteItem, updateItem}) => { //<Todo todoitem = {todo}/> =>  props = todo
     
     //const {item} = props;
     const {id, title, done} = item;
@@ -44,12 +44,28 @@ const Todo = ({item, deleteItem}) => { //<Todo todoitem = {todo}/> =>  props = t
     const enterKeyEventHandler = (e) => {
         if(e.key === "Enter"){
             setReadOnly(true);
+
+            updateItem(todoItem);
         }
     };
 
-    const checkboxEventHandler = () => {
-        todoItem.done = !todoItem.done; //!true -> false, !false->true
-        setTodoItem(todoItem);
+    const checkboxEventHandler = (e) => {
+        //내용이 달라져도 주소가 같아서 다르다하더라고 같다고 인식한다
+        //그래서 새로운 주소에 담아서 비교.
+
+        // todoItem.done = !todoItem.done; //!true -> false, !false->true
+        // setTodoItem(todoItem);
+
+        const {done, ...rest} = todoItem;
+
+        //rest에는 id와 title 정보가 들어가게 된다
+        const updatedItem = {
+            done: e.target.checked,
+            ...rest,
+        };
+
+        setTodoItem(updatedItem);
+        updateItem(updatedItem); // 변경될 대상
     };
 
 
