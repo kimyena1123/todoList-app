@@ -52,9 +52,20 @@ function App() {
   //상위 컴포넌트(App)은 AddTodo 컴포넌트 접근 가능.
   // => App 컴포넌트에 addItem() 함수를 정의하고,
   // => 해당 함수를 AddTodo props로 넘겨야 함.
-  const addItem = (newItem) => { //addItem(todoItem); => 여기서 newItem 인자는 todoItem을 의미.
+  const addItem = async (newItem) => { //addItem(todoItem); => 여기서 newItem 인자는 todoItem을 의미.
+    //axios.post(url, data);
+    //POST localhost: PORT/todo - create a new todo (CREATE)
+    const res = await axios.post("http://localhost:8080/todo", newItem); //router.post('/todo', async(req, res) => {
+
+    console.log('res 확인 >> ', res.data);
+    //기존 아이템: ...todoItmes
+    ///새로운 아이템: res.data
+    setTodoItems([...todoItems, res.data]);
+
+
     //newItem - {id: ?, title: ?, done: false}
     //setTodoItems()
+    /*
     newItem.id = todoId.current++; //key를 위한 id설정
     newItem.done = false; //done 초기화 하는 코드
 
@@ -62,6 +73,7 @@ function App() {
     setTodoItems([...todoItems, newItem]); //setTodoItems(todoItems.concat(newItem));
 
     console.log('합쳐진 배열 >> ', [...todoItems, newItem]);
+    */
 
     //{title: 'xx'} <- id, done
     //setTodoItems([A,B])
