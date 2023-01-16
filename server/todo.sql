@@ -18,6 +18,8 @@ INSERT INTO todo (title, done) VALUES ('sean todo4', 1);
 INSERT INTO todo (title, done) VALUES ('sean todo5', 1);
 INSERT INTO todo (title, done) VALUES ('sean todo6', 0);
 
+DELETE FROM `todo` id > 5;
+
 -- insert 방법2
 -- INSERT INTO todo VALUES (null, 'my todo1', 0);
 -- INSERT INTO todo VALUES (null, 'my todo2', 0);

@@ -1,14 +1,15 @@
-import { useState, useRef } from "react";
-import {BrowserRouter, Routes, Route} from "react-router-dom";
+import { useState, useRef, useEffect} from "react";
+// import {BrowserRouter, Routes, Route} from "react-router-dom";
+import axios from 'axios';
 import Todo from './components/Todo';
 import AddTodo from './components/AddTodo'
-import Header from './components/Header';
+// import Header from './components/Header';
 import './styles/App.scss';
 
 function App() {
   //가상 데이터 -> back에서 가져와야 함.
   const [todoItems, setTodoItems] = useState([
-    {
+    /*{
       id: 1,
       title: 'My Todo1',
       done: false,
@@ -24,10 +25,28 @@ function App() {
       done: true,
     },
     // + newItem
+    */
   ]);
 
   //ref 선언
   const todoId = useRef(4);
+
+  //Mount될 때만 => 최초 rendering
+  useEffect(() => {
+    console.log('첫 렌더링 완료!');
+
+    const getTodos = async() => {
+      ////GET localhost:PORT/todos - show all todos (READ)
+      let res = await axios.get("http://localhost:8080/todos");
+
+      console.log(res);
+      console.log(res.data);
+
+      setTodoItems(res.data);
+    }
+
+    getTodos();
+  }, []);
 
   //AddTodo 컴포넌트는 상위 컴포넌트(App)의 todoItems에 접근 불가능
   //상위 컴포넌트(App)은 AddTodo 컴포넌트 접근 가능.
@@ -80,7 +99,7 @@ function App() {
 
       {todoItems.length > 0 ? 
         (todoItems.map((item) => {
-          console.log('item >> ', item);
+          //console.log('item >> ', item);
 
           return(
             <Todo key = {item.id} 
